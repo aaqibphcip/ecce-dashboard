@@ -440,7 +440,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Fetch live data from Flask server
 function loadData() {
-  fetch('http://localhost:5000/data', {cache: 'no-store'})
+  fetch('/data', {cache: 'no-store'})
     .then(res => {
       if (!res.ok) throw new Error('Server error');
       return res.json();
