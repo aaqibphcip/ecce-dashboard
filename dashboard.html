@@ -284,7 +284,7 @@
     <div class="header-left">
       <div class="header-tag"><span class="live-dot"></span> Live Survey Dashboard</div>
       <h1>ECCE Quality Indicators Survey<br><span>in Punjab Schools</span></h1>
-      <div class="header-sub">Programme Monitoring & Implementation Unit · School Education Department</div>
+      <div class="header-sub">GRADES-P | Programme Monitoring & Implementation Unit | School Education Department</div>
     </div>
     <div class="header-right">
       <div class="date-box">Survey Date</div>
@@ -348,8 +348,8 @@
         <canvas id="donutChart" role="img" aria-label="Donut chart showing submitted vs pending forms"></canvas>
       </div>
       <div style="display:flex;gap:16px;justify-content:center;margin-top:12px;font-size:11px;color:#4a6080;font-family:'DM Mono',monospace;">
-        <span style="display:flex;align-items:center;gap:5px"><span style="width:10px;height:10px;border-radius:2px;background:#00d4a0;display:inline-block"></span>Submitted 7.1%</span>
-        <span style="display:flex;align-items:center;gap:5px"><span style="width:10px;height:10px;border-radius:2px;background:#ff5b5b;display:inline-block"></span>Pending 92.9%</span>
+        <span style="display:flex;align-items:center;gap:5px"><span style="width:10px;height:10px;border-radius:2px;background:#00d4a0;display:inline-block"></span>Submitted <span id="donut-sub-pct">—</span></span>
+        <span style="display:flex;align-items:center;gap:5px"><span style="width:10px;height:10px;border-radius:2px;background:#ff5b5b;display:inline-block"></span>Pending <span id="donut-pend-pct">—</span></span>
       </div>
     </div>
     <div class="chart-card">
@@ -573,6 +573,11 @@ function buildCharts() {
 
   const totalSub = DATA.reduce((s,d)=>s+d.submitted,0);
   const totalPend = DATA.reduce((s,d)=>s+d.pending,0);
+  const totalAll = totalSub + totalPend;
+  const subPct = (totalSub / totalAll * 100).toFixed(1);
+  const pendPct = (totalPend / totalAll * 100).toFixed(1);
+  document.getElementById('donut-sub-pct').textContent = subPct + '%';
+  document.getElementById('donut-pend-pct').textContent = pendPct + '%';
   new Chart(document.getElementById('donutChart'), {
     type: 'doughnut',
     data: {
