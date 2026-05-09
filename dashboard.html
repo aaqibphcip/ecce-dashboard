@@ -417,7 +417,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function loadData() {
-  fetch('/data', {cache: 'no-store'})
+  fetch('https://ecce-survey-gradesp.up.railway.app/data', {cache: 'no-store'})
     .then(res => {
       if (!res.ok) throw new Error('Server error');
       return res.json();
